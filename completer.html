@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>autocompleter !</title>
+  <script type="text/javascript" src="completer.js"></script>
+  <script type="text/javascript" src="mockRemoteRepository.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="list_html.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ6cSK2B2OXRxENpuukx_KTxGzbXiVmg4&sensor=false" type="text/javascript"></script>
+</head>
+<body>
+<input id="autocomplete" type="text">
+
+<script type="text/javascript">
+	$('#autocomplete').on('keyup', function(event) {
+		var completer = new Completer(new MockRemoteRepository());
+		var result = completer.search($(this).val());
+		var list_html = new ListHtml(result);
+		$('#list').html(list_html.render());
+		$('#list').show();
+	});
+</script>
+</input>
+<div id="list" style="display:none;"></div>
+</body>
+</html>
